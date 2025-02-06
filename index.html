@@ -94,6 +94,13 @@
             }
             return isValid;
         }
+        document.addEventListener('keydown', (key) => {
+            console.log(`helo`);
+
+            if (key.key === 'Enter') {
+                foundAdmin();
+            }
+        });
     </script>
 </body>
 

@@ -120,6 +120,13 @@
 
             return isValid;
         }
+        document.addEventListener('keydown', (key) => {
+            console.log(`helo`);
+
+            if (key.key === 'Enter') {
+                checkInputs();
+            }
+        });
     </script>
 
 </body>

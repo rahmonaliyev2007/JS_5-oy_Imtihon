@@ -52,9 +52,6 @@ addForm.addEventListener('submit', (e) => {
         addCloseFC();
         addForm.reset();
     }
-    else {
-        console.log(`yaxshi emas`);
-    }
 
 });
 
@@ -106,90 +103,7 @@ function addStudentCheckFC() {
     });
     return isValid;
 }
-function editStudentCheckFC() {
-    const name = document.getElementById('edit_Name');
-    const photo = document.getElementById('edit_Photo');
-    const phone = document.getElementById('edit_Phone');
-    const email = document.getElementById('edit_Email');
-    const enroll = document.getElementById('edit_Enroll');
-    const nameError = document.querySelector('.edit_Name_error');
-    const photoError = document.querySelector('.edit_Photo_error');
-    const emailError = document.querySelector('.edit_Email_error');
-    const phoneError = document.querySelector('.edit_Phone_error');
-    const enrollError = document.querySelector('.edit_Enroll_error');
-
-    let isValid = true;
-
-    [name, photo, phone, email, enroll].forEach((input) => {
-        const errorEl = document.querySelector(`.edit_${input.id.split('_')[1]}_error`);
-        if (input.value.trim() === "") {
-            isValid = false;
-            errorEl.style.top = '0';
-            input.style.borderColor = 'red';
-        } else {
-            errorEl.style.top = '-20px';
-            input.style.borderColor = 'rgba(229, 229, 229, 1)';
-        }
-    });
-    return isValid;
-}
 // add student check end =====
-
-// delete student end =============
-function deleteStudent(id) {
-    js12Students = js12Students.filter((item, i) => i !== id);
-    localStorage.setItem('js12Students', JSON.stringify(js12Students));
-    showStudent();
-};
-// add reset start ========
-
-function addReset() {
-    const name = document.getElementById('add_Name');
-    const photo = document.getElementById('add_Photo');
-    const phone = document.getElementById('add_Phone');
-    const email = document.getElementById('add_Email');
-    const enroll = document.getElementById('add_Enroll');
-    const nameError = document.querySelector('.add_Name_error');
-    const photoError = document.querySelector('.add_Photo_error');
-    const emailError = document.querySelector('.add_Email_error');
-    const phoneError = document.querySelector('.add_Phone_error');
-    const enrollError = document.querySelector('.add_Enroll_error');
-
-    nameError.style.top = '-20px';
-    photoError.style.top = '-20px';
-    emailError.style.top = '-20px';
-    phoneError.style.top = '-20px';
-    enrollError.style.top = '-20px';
-    name.style.borderColor = 'rgba(229, 229, 229, 1)';
-    photo.style.borderColor = 'rgba(229, 229, 229, 1)';
-    email.style.borderColor = 'rgba(229, 229, 229, 1)';
-    phone.style.borderColor = 'rgba(229, 229, 229, 1)';
-    enroll.style.borderColor = 'rgba(229, 229, 229, 1)';
-}
-function editReset() {
-    const name = document.getElementById('add_Name');
-    const photo = document.getElementById('add_Photo');
-    const phone = document.getElementById('add_Phone');
-    const email = document.getElementById('add_Email');
-    const enroll = document.getElementById('add_Enroll');
-    const nameError = document.querySelector('.add_Name_error');
-    const photoError = document.querySelector('.add_Photo_error');
-    const emailError = document.querySelector('.add_Email_error');
-    const phoneError = document.querySelector('.add_Phone_error');
-    const enrollError = document.querySelector('.add_Enroll_error');
-
-    nameError.style.top = '-20px';
-    photoError.style.top = '-20px';
-    emailError.style.top = '-20px';
-    phoneError.style.top = '-20px';
-    enrollError.style.top = '-20px';
-    name.style.borderColor = 'rgba(229, 229, 229, 1)';
-    photo.style.borderColor = 'rgba(229, 229, 229, 1)';
-    email.style.borderColor = 'rgba(229, 229, 229, 1)';
-    phone.style.borderColor = 'rgba(229, 229, 229, 1)';
-    enroll.style.borderColor = 'rgba(229, 229, 229, 1)';
-}
-// add reset end ===========
 
 // nav toggle start ===========
 navToggle.addEventListener('click', () => {
@@ -276,7 +190,33 @@ editForm.addEventListener('submit', (e) => {
         showStudent();
     }
 });
+function editStudentCheckFC() {
+    const name = document.getElementById('edit_Name');
+    const photo = document.getElementById('edit_Photo');
+    const phone = document.getElementById('edit_Phone');
+    const email = document.getElementById('edit_Email');
+    const enroll = document.getElementById('edit_Enroll');
+    const nameError = document.querySelector('.edit_Name_error');
+    const photoError = document.querySelector('.edit_Photo_error');
+    const emailError = document.querySelector('.edit_Email_error');
+    const phoneError = document.querySelector('.edit_Phone_error');
+    const enrollError = document.querySelector('.edit_Enroll_error');
 
+    let isValid = true;
+
+    [name, photo, phone, email, enroll].forEach((input) => {
+        const errorEl = document.querySelector(`.edit_${input.id.split('_')[1]}_error`);
+        if (input.value.trim() === "") {
+            isValid = false;
+            errorEl.style.top = '0';
+            input.style.borderColor = 'red';
+        } else {
+            errorEl.style.top = '-20px';
+            input.style.borderColor = 'rgba(229, 229, 229, 1)';
+        }
+    });
+    return isValid;
+}
 function editCloseFC() {
     editBox.style.right = '-100%';
     overlay.style.opacity = '0';
@@ -362,4 +302,95 @@ function seeStudentFC(id) {
 
     // Yangi sahifaga yo'naltirish
     window.location.href = 'seeStudent.html';
+}
+addBox.addEventListener('keydown', (key) => {
+    if (key.key === 'Enter') {
+        addForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (addStudentCheckFC()) {
+                addStudentFC();
+                addReset();
+                showStudent();
+                addCloseFC();
+                addForm.reset();
+            }
+        });
+    }
+});
+editBox.addEventListener('keydown', (key) => {
+    if (key.key === 'Enter') {
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (editStudentCheckFC()) {
+                js12Students[editStudentId] = {
+                    name: document.getElementById('edit_Name').value,
+                    photo: document.getElementById('edit_Photo').value,
+                    email: document.getElementById('edit_Email').value,
+                    phone: document.getElementById('edit_Phone').value,
+                    enroll: document.getElementById('edit_Enroll').value,
+                    time: timeFC()
+                }
+                localStorage.setItem('js12Students', JSON.stringify(js12Students));
+                editCloseFC();
+                showStudent();
+            }
+        });
+    }
+});
+
+
+
+
+
+// delete student end =============
+function deleteStudent(id) {
+    js12Students = js12Students.filter((item, i) => i !== id);
+    localStorage.setItem('js12Students', JSON.stringify(js12Students));
+    showStudent();
+};
+function addReset() {
+    const name = document.getElementById('add_Name');
+    const photo = document.getElementById('add_Photo');
+    const phone = document.getElementById('add_Phone');
+    const email = document.getElementById('add_Email');
+    const enroll = document.getElementById('add_Enroll');
+    const nameError = document.querySelector('.add_Name_error');
+    const photoError = document.querySelector('.add_Photo_error');
+    const emailError = document.querySelector('.add_Email_error');
+    const phoneError = document.querySelector('.add_Phone_error');
+    const enrollError = document.querySelector('.add_Enroll_error');
+
+    nameError.style.top = '-20px';
+    photoError.style.top = '-20px';
+    emailError.style.top = '-20px';
+    phoneError.style.top = '-20px';
+    enrollError.style.top = '-20px';
+    name.style.borderColor = 'rgba(229, 229, 229, 1)';
+    photo.style.borderColor = 'rgba(229, 229, 229, 1)';
+    email.style.borderColor = 'rgba(229, 229, 229, 1)';
+    phone.style.borderColor = 'rgba(229, 229, 229, 1)';
+    enroll.style.borderColor = 'rgba(229, 229, 229, 1)';
+}
+function editReset() {
+    const name = document.getElementById('add_Name');
+    const photo = document.getElementById('add_Photo');
+    const phone = document.getElementById('add_Phone');
+    const email = document.getElementById('add_Email');
+    const enroll = document.getElementById('add_Enroll');
+    const nameError = document.querySelector('.add_Name_error');
+    const photoError = document.querySelector('.add_Photo_error');
+    const emailError = document.querySelector('.add_Email_error');
+    const phoneError = document.querySelector('.add_Phone_error');
+    const enrollError = document.querySelector('.add_Enroll_error');
+
+    nameError.style.top = '-20px';
+    photoError.style.top = '-20px';
+    emailError.style.top = '-20px';
+    phoneError.style.top = '-20px';
+    enrollError.style.top = '-20px';
+    name.style.borderColor = 'rgba(229, 229, 229, 1)';
+    photo.style.borderColor = 'rgba(229, 229, 229, 1)';
+    email.style.borderColor = 'rgba(229, 229, 229, 1)';
+    phone.style.borderColor = 'rgba(229, 229, 229, 1)';
+    enroll.style.borderColor = 'rgba(229, 229, 229, 1)';
 }
