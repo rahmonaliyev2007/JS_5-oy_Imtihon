@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="loginBody">
+    <div class="formBody">
+        <form action="./dashboard.html" id="registerForm" onsubmit="return checkInputs()">
+            <h2 class="loginTitle">
+                Admin Students
+            </h2>
+            <h3 class="adminTitle">
+                Sign Up
+            </h3>
+            <p class="adminSubtitle">
+                Enter your credentials to access your account
+            </p>
+            <label for="login">
+                <span>Enter your Full Name</span>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+                <span class="nameError error">Please enter your login</span>
+            </label>
+            <label for="photo">
+                <span>Enter your Photo URL</span>
+                <input type="text" id="photo" name="photo" placeholder="Enter your photo URL">
+                <span class="photoError error">Please enter your URL</span>
+            </label>
+            <label for="registerLogin">
+                <span>Enter your new Login</span>
+                <input type="text" id="registerLogin" name="registerLogin" placeholder="Enter your new login">
+                <span class="registerLoginError error">Please enter your new login</span>
+            </label>
+            <label for="registerPassword">
+                <span>Create a new Password</span>
+                <input type="password" id="registerPassword" placeholder="Enter your new password">
+                <span class="registerPasswordError error">Please create a new password</span>
+
+            </label>
+            <button class="submit" type="submit">Sign Up</button>
+        </form>
+        <p class="link"><a href="../index.html">Sign in</a></p>
+    </div>
+
+    <script>
+        function checkInputs() {
+            const name = document.getElementById('name');
+            const registerLogin = document.getElementById('registerLogin');
+            const registerPassword = document.getElementById('registerPassword');
+            const photo = document.getElementById('photo');
+            const nameError = document.querySelector('.nameError');
+            const registerLoginError = document.querySelector('.registerLoginError');
+            const registerPasswordError = document.querySelector('.registerPasswordError');
+            const photoError = document.querySelector('.photoError');
+
+            let isValid = true;
+
+            if (name.value.trim() === "") {
+                isValid = false;
+                nameError.style.top = '0';
+                name.style.borderColor = 'red';
+            } else {
+                nameError.style.top = '-20px';
+                name.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+            if (photo.value.trim() === "") {
+                isValid = false;
+                photoError.style.top = '0';
+                photo.style.borderColor = 'red';
+            } else {
+                nameError.style.top = '-20px';
+                name.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+            if (registerLogin.value.trim() === "") {
+                isValid = false;
+                registerLoginError.style.top = '0';
+                registerLogin.style.borderColor = 'red';
+            } else {
+                registerLoginError.style.top = '-20px';
+                registerLogin.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+            if (registerPassword.value.trim() === "") {
+                isValid = false;
+                registerPasswordError.style.top = '0';
+                registerPassword.style.borderColor = 'red';
+            } else {
+                registerPasswordError.style.top = '-20px';
+                registerPassword.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+
+            if (isValid) {
+                let js12Data = JSON.parse(localStorage.getItem('AbdulazizJS12')) || [];
+                let user1marta = JSON.parse(localStorage.getItem('AbdulazizJS121marta')) || [];
+                js12Data.push({
+                    name: name.value.trim(),
+                    login: registerLogin.value.trim(),
+                    password: registerPassword.value.trim(),
+                    photo: photo.value.trim()
+                });
+                user1marta.unshift({
+                    name: name.value.trim(),
+                    login: registerLogin.value.trim(),
+                    password: registerPassword.value.trim(),
+                    photo: photo.value.trim()
+                });
+                if(user1marta.length > 1){
+                    user1marta.pop();
+                }
+                localStorage.setItem('AbdulazizJS12', JSON.stringify(js12Data));
+                localStorage.setItem('AbdulazizJS121marta', JSON.stringify(user1marta));
+            }
+
+            return isValid;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,657 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Montserrat", serif;
+  transition: 0.4s ease-in-out;
+}
+
+.container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Montserrat", serif;
+  transition: 0.4s ease-in-out;
+}
+
+.container {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.loginBody {
+  background: linear-gradient(to right, rgb(254, 175, 0), rgb(248, 212, 66));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.formBody {
+  background-color: #fff;
+  width: 475px;
+  border-radius: 20px;
+  padding: 45px 30px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.formBody label {
+  display: block;
+  color: rgb(108, 108, 108);
+  width: 100%;
+  margin: 6px auto;
+  position: relative;
+  font-size: 14px;
+}
+.formBody label input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(229, 229, 229);
+  margin: 11px auto 0;
+  z-index: 2;
+  position: relative;
+}
+.formBody label input::-moz-placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.formBody label input::placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.formBody label input:focus {
+  border-color: rgb(108, 108, 108);
+}
+.formBody .submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid rgb(254, 175, 0);
+  background-color: rgb(254, 175, 0);
+  color: #fff;
+  margin: 5px auto 11px;
+  position: relative;
+  z-index: 2;
+}
+
+.loginTitle {
+  margin: auto;
+  width: 75%;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  border-left: 6px solid rgb(254, 175, 0);
+}
+
+.adminTitle {
+  margin: auto;
+  width: 100%;
+  text-transform: uppercase;
+  margin-top: 45px;
+  font-size: 22px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.adminSubtitle {
+  margin: 10px auto 40px;
+  width: 100%;
+  font-weight: normal;
+  text-align: center;
+  font-size: 14px;
+  color: rgb(108, 108, 108);
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: relative;
+  top: -20px;
+  z-index: 1;
+}
+
+.error2 {
+  color: red;
+  font-size: 12px;
+  position: relative;
+  top: 30px;
+  z-index: 1;
+}
+
+.link {
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+.link a {
+  color: #333;
+}
+
+.wrap {
+  display: flex;
+  justify-content: end;
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1607843137);
+  z-index: 4;
+  display: none;
+  opacity: 1;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}
+
+main {
+  width: calc(100% - 270px);
+  background-color: rgb(248, 248, 248);
+  height: 100vh;
+  overflow: hidden;
+}
+main nav {
+  background-color: rgb(242, 234, 225);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 12px;
+}
+main .nav_l {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .nav_l h2 {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 6px solid rgb(254, 175, 0);
+  margin-left: 20px;
+  transform: translate(0, -45px);
+  cursor: pointer;
+}
+main .nav_left {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 50%;
+  font-size: 15px;
+  transform: rotate(0deg);
+  cursor: pointer;
+}
+main .nav_right {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 25px;
+  margin-right: 20px;
+}
+main .nav_right .search {
+  width: 230px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 9px 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .nav_right .search input {
+  all: unset;
+  font-size: 14px;
+}
+main .nav_right .search input::-moz-placeholder {
+  font-size: 12px;
+  color: rgb(205, 205, 205);
+}
+main .nav_right .search input::placeholder {
+  font-size: 12px;
+  color: rgb(205, 205, 205);
+}
+main .nav_right .search i {
+  color: rgb(205, 205, 205);
+}
+main .list {
+  padding: 0 30px;
+  width: 100%;
+}
+main .list .list_top {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(229, 229, 229);
+  align-items: center;
+}
+main .list .list_top h2 {
+  font-size: 22px;
+  color: #333;
+}
+main .list .list_top .list_right {
+  display: flex;
+  justify-content: end;
+  gap: 30px;
+  align-items: center;
+}
+main .list .list_top .list_right #addBtn {
+  padding: 12px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(254, 175, 0);
+}
+main .list .list_top .list_right #addBtn:hover {
+  background-color: rgb(211, 146, 7);
+}
+main .list .list_top .list_right .filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+main .list .list_top .list_right .filter i:last-child {
+  margin-top: -7px;
+}
+main .list .list_top .list_right .filter:hover i {
+  color: rgb(254, 175, 0);
+}
+main .list .list_middle ul {
+  display: grid;
+  grid-template-columns: 7% 20% 29% 10.5% 16% 9% 1%;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+}
+main .list .list_middle ul li {
+  font-size: 12px;
+  color: rgb(108, 108, 108);
+  flex: 1;
+  min-width: 0;
+  margin-right: 5px;
+}
+main .list .list_middle ul li:first-child, main .list .list_middle ul li:last-child {
+  color: transparent;
+}
+main .list .list_main {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+main .list .list_main li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 14px !important;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  gap: 10px;
+  position: relative;
+}
+main .list .list_main li:hover {
+  background-color: rgba(227, 227, 227, 0.464);
+}
+main .list .list_main li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0px;
+  background-color: rgba(254, 174, 0, 0.205);
+  font-size: 10px;
+}
+main .list .list_main li div {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main .list .list_main li div.name {
+  max-width: 200px;
+  font-weight: 500;
+}
+main .list .list_main li div.email {
+  max-width: 290px;
+}
+main .list .list_main li div.phone {
+  max-width: 85px;
+}
+main .list .list_main li div.enroll {
+  max-width: 160px;
+}
+main .list .list_main li div.date {
+  max-width: 100px;
+}
+main .list .list_main li div.action {
+  max-width: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+}
+main .list .list_main li div.action button {
+  all: unset;
+  font-size: 17px;
+  color: rgb(108, 108, 108);
+}
+main .list .list_main li div.action button:hover {
+  color: rgb(254, 175, 0);
+}
+main .li_Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  opacity: 0;
+  background-color: transparent;
+  border-radius: 5px 0 0 5px;
+}
+
+.left {
+  width: 270px;
+  background-color: rgb(242, 234, 225);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.left .left_top {
+  margin: 20px auto;
+  width: 100%;
+}
+.left .left_top .dash_h2 {
+  width: 75%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-left: 6px solid rgb(254, 175, 0);
+  margin: auto;
+}
+.left .left_main {
+  margin: auto;
+  width: 100%;
+}
+.left .left_main .left_img {
+  margin: auto;
+  padding: 20px 0;
+  text-align: center;
+}
+.left .left_main .left_img img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.left .left_main #adminName {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+.left .left_main .adminStatus {
+  text-align: center;
+  color: rgb(254, 175, 0);
+  font-size: 14px;
+  margin-top: 7px;
+}
+.left .left_main .left_button {
+  cursor: not-allowed;
+  background-color: rgb(254, 175, 0);
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  margin: 65px auto;
+  gap: 10px;
+  border-radius: 4px;
+}
+.left .left_main .left_button:hover {
+  background-color: rgb(211, 146, 7);
+}
+.left .left_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 50px);
+  cursor: pointer;
+}
+
+.add {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 500px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 5;
+}
+.add .add_h2 {
+  font-size: 22px;
+  padding-left: 10px;
+  border-left: 6px solid rgb(254, 175, 0);
+  margin: 0 auto 50px;
+}
+.add #add_Close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  cursor: pointer;
+}
+.add label {
+  display: block;
+  color: rgb(108, 108, 108);
+  width: 100%;
+  margin: 6px auto;
+  position: relative;
+  font-size: 14px;
+}
+.add label input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(229, 229, 229);
+  margin: 11px auto 0;
+  z-index: 2;
+  position: relative;
+}
+.add label input::-moz-placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.add label input::placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.add label input:focus {
+  border-color: rgb(108, 108, 108);
+}
+.add button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid rgb(254, 175, 0);
+  background-color: rgb(254, 175, 0);
+  color: #fff;
+  margin: 5px auto 11px;
+  position: relative;
+  z-index: 2;
+}
+
+.edit {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 500px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 5;
+}
+.edit .add_h2 {
+  font-size: 22px;
+  padding-left: 10px;
+  border-left: 6px solid rgb(254, 175, 0);
+  margin: 0 auto 50px;
+}
+.edit label {
+  display: block;
+  color: rgb(108, 108, 108);
+  width: 100%;
+  margin: 6px auto;
+  position: relative;
+  font-size: 14px;
+}
+.edit label input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid rgb(229, 229, 229);
+  margin: 11px auto 0;
+  z-index: 2;
+  position: relative;
+}
+.edit label input::-moz-placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.edit label input::placeholder {
+  color: rgb(205, 205, 205);
+  font-size: 12px;
+}
+.edit label input:focus {
+  border-color: rgb(108, 108, 108);
+}
+.edit button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid rgb(254, 175, 0);
+  background-color: rgb(254, 175, 0);
+  color: #fff;
+  margin: 5px auto 11px;
+  position: relative;
+  z-index: 2;
+}
+
+#add_Close,
+#edit_Close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.profileBox {
+  background-color: #fff;
+  max-width: 600px;
+  padding: 28px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 40px 0;
+  padding-bottom: 100px;
+}
+.profileBox .img {
+  width: 210px;
+  height: 210px;
+  background-color: rgb(229, 229, 229);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.profileBox .img img {
+  width: 100%;
+  height: 100%;
+}
+.profileBox .info {
+  padding: 0 20px;
+  width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 40px;
+}
+.profileBox .info div span {
+  display: block;
+  font-size: 12px;
+  color: rgb(172, 172, 172);
+}
+.profileBox .info div p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.qandl {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.goBack {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.goBack a {
+  color: #333;
+}
+.goBack:hover a {
+  color: rgb(211, 146, 7);
+}/*# sourceMappingURL=main.css.map */

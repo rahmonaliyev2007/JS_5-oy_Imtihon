@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="wrap">
+  <div class="left">
+    <div class="left_top">
+      <h2 class="dash_h2">Admin Students</h2>
+    </div>
+    <div class="left_main">
+      <div class="left_img">
+        <img src="../Images/profile.png" alt="profile img">
+      </div>
+      <div class="left_about_admin">
+        <h3 id="adminName">Admin Name</h3>
+        <p class="adminStatus">Admin</p>
+      </div>
+      <div class="left_button">
+        <i class="bi bi-mortarboard"></i>
+        <span>Students</span>
+      </div>
+    </div>
+    <a class="left_bottom" href="../index.html">
+      <span>Logout</span>
+      <i class="bi bi-box-arrow-right"></i>
+    </a>
+  </div>
+  <main>
+    <nav>
+      <div class="nav_l">
+        <div class="nav_left" id="navToggle">
+          <i class="bi bi-caret-left"></i>
+        </div>
+        <h2 id="navTitle">Admin Students ( <span id="navName">Students</span> )</h2>
+      </div>
+      <div class="nav_right">
+        <div class="search">
+          <input type="text" placeholder="Search..." id="search" oninput="searchStudents()">
+          <i class="bi bi-search"></i>
+        </div>
+        <i class="bi bi-bell"></i>
+      </div>
+    </nav>
+    <div class="list">
+      <div class="list_top">
+        <h2 class="list_h2">Students List</h2>
+        <div class="list_right">
+          <div class="filter">
+            <i class="bi bi-caret-up"></i>
+            <i class="bi bi-caret-down"></i>
+          </div>
+          <button id="addBtn">
+            <i class="bi bi-person-add"></i>
+            ADD NEW STUDENT
+          </button>
+        </div>
+      </div>
+      <div class="list_middle">
+        <ul>
+          <li class="img">img</li>
+          <li class="name">Name</li>
+          <li class="email">Email</li>
+          <li class="phone">Phone</li>
+          <li class="enroll">Enroll number</li>
+          <li class="date"> Date admission</li>
+          <li class="action"> Action</li>
+        </ul>
+      </div>
+      <ul class="list_main" id="showList">
+
+      </ul>
+    </div>
+  </main>
+
+  <div class="add">
+    <h2 class="add_h2">Add New Student</h2>
+    <i class="bi bi-x-lg" id="add_Close"></i>
+    <form class="add_form" id="addForm">
+      <label for="">
+        <span>Student Full Name</span>
+        <input type="text" id="add_Name" placeholder="Enter Fullname">
+        <span class="add_Name_error error">Please enter student Fullname</span>
+      </label>
+      <label for="">
+        <span>Student Photo URL</span>
+        <input type="text" id="add_Photo" placeholder="Enter Student photo URL">
+        <span class="add_Photo_error error">Please enter URL</span>
+      </label>
+      <label for="">
+        <span>Student Email</span>
+        <input type="text" id="add_Email" placeholder="Enter email">
+        <span class="add_Email_error error">Please enter student email</span>
+      </label>
+      <label for="">
+        <span>Student Phone Number</span>
+        <input type="text" id="add_Phone" placeholder="Enter phone number">
+        <span class="add_Phone_error error">Please enter student phone number</span>
+      </label>
+      <label for="">
+        <span>Student Enroll</span>
+        <input type="text" id="add_Enroll" placeholder="Enter Student enroll">
+        <span class="add_Enroll_error error">Please enter student enroll</span>
+      </label>
+      <button id="addStudent">Add Student</button>
+    </form>
+  </div>
+  <div class="edit">
+    <h2 class="add_h2">Edit Student</h2>
+    <i class="bi bi-x-lg" id="edit_Close"></i>
+    <form class="add_form" id="editForm">
+      <label for="">
+        <span>Student Full Name</span>
+        <input type="text" id="edit_Name" placeholder="Enter Fullname">
+        <span class="edit_Name_error error">Please enter student Fullname</span>
+      </label>
+      <label for="">
+        <span>Student Photo URL</span>
+        <input type="text" id="edit_Photo" placeholder="Enter Student photo URL">
+        <span class="edit_Photo_error error">Please enter URL</span>
+      </label>
+      <label for="">
+        <span>Student Email</span>
+        <input type="text" id="edit_Email" placeholder="Enter email">
+        <span class="edit_Email_error error">Please enter student email</span>
+      </label>
+      <label for="">
+        <span>Student Phone Number</span>
+        <input type="text" id="edit_Phone" placeholder="Enter phone number">
+        <span class="edit_Phone_error error">Please enter student phone number</span>
+      </label>
+      <label for="">
+        <span>Student Enroll</span>
+        <input type="text" id="edit_Enroll" placeholder="Enter Student enroll">
+        <span class="edit_Enroll_error error">Please enter student enroll</span>
+      </label>
+      <button id="addStudent">Edit Student</button>
+    </form>
+  </div>
+
+  <div class="overlay"></div>
+  <script>
+    const admin = JSON.parse(localStorage.getItem('AbdulazizJS121marta'));
+    const adminName = document.getElementById('adminName');
+    const navName = document.getElementById('navName');
+    const adminPhoto = document.querySelector('.left_img');
+    const search = document.getElementById('search');
+    if (admin[0].name.length > 15) {
+      adminName.innerHTML = `${admin[0].name.slice(0, 15)}...`;
+    } else {
+      adminName.innerHTML = admin[0].name;
+    }
+    navName.innerHTML = admin[0].name;
+    adminPhoto.innerHTML = `<img src="${admin[0].photo}" alt="Admin Photo">`;
+  </script>
+  <script src="../js/script.js"></script>
+</body>
+
+</html>

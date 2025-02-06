@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body class="loginBody">
+    <div class="formBody">
+        <form id="loginForm" action="./additional/dashboard.html" method="GET" onsubmit="return foundAdmin()">
+            <h2 class="loginTitle">Admin Students</h2>
+            <h3 class="adminTitle">Sign In</h3>
+            <p class="adminSubtitle">Enter your credentials to access your account</p>
+            <label for="login">
+                <span>Login</span>
+                <input type="text" id="login" name="login" placeholder="Enter your login">
+                <span class="loginError error">Please enter your login</span>
+            </label>
+            <label for="password">
+                <span>Password</span>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <span class="passwordError error">Please enter your password</span>
+            </label>
+            <div class="notfound error2">User not found</div>
+            <button class="submit">Sign in</button>
+        </form>
+        <p class="link"><a href="./additional/register.html">Sign up</a></p>
+    </div>
+
+    <script>
+        function foundAdmin() {
+            const login = document.getElementById('login');
+            const password = document.getElementById('password');
+            const loginError = document.querySelector('.loginError');
+            const passwordError = document.querySelector('.passwordError');
+            const notfound = document.querySelector('.notfound');
+
+            let isValid = true;
+
+            // Login maydoni tekshiruvi
+            if (login.value.trim() === "") {
+                isValid = false;
+                loginError.style.top = '0';
+                login.style.borderColor = 'red';
+            } else {
+                loginError.style.top = '-20px';
+                login.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+
+            // Parol maydoni tekshiruvi
+            if (password.value.trim() === "") {
+                isValid = false;
+                passwordError.style.top = '0';
+                password.style.borderColor = 'red';
+            } else {
+                passwordError.style.top = '-20px';
+                password.style.borderColor = 'rgba(229, 229, 229, 1)';
+            }
+
+            if (isValid) {
+                let users = JSON.parse(localStorage.getItem('AbdulazizJS12')) || [];
+
+                let foundUser = users.find(user => user.login === login.value && user.password === password.value);
+                if (foundUser) {
+                    let user1marta = JSON.parse(localStorage.getItem('AbdulazizJS121marta')) || [];
+
+                    user1marta.unshift({
+                        name: foundUser.name,
+                        login: foundUser.login,
+                        password: foundUser.password,
+                        photo: foundUser.photo
+                    });
+
+                    if (user1marta.length > 1) {
+                        user1marta.pop();
+                    }
+
+                    // Yangilangan ma'lumotni localStorage'ga yozish
+                    localStorage.setItem('AbdulazizJS121marta', JSON.stringify(user1marta));
+                    isValid = true;
+                } else {
+                    login.style.borderColor = 'red';
+                    password.style.borderColor = 'red';
+                    notfound.style.top = '0';
+                    isValid = false;
+                }
+            }
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>

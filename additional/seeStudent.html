@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="wrap">
+    <div class="left">
+        <div class="left_top">
+            <h2 class="dash_h2">Admin Students</h2>
+        </div>
+        <div class="left_main">
+            <div class="left_img">
+                <img src="../Images/profile.png" alt="profile img">
+            </div>
+            <div class="left_about_admin">
+                <h3 id="adminName">Admin Name</h3>
+                <p class="adminStatus">Admin</p>
+            </div>
+            <div class="left_button">
+                <i class="bi bi-mortarboard"></i>
+                <span>Students</span>
+            </div>
+        </div>
+        <a class="left_bottom" href="../index.html">
+            <span>Logout</span>
+            <i class="bi bi-box-arrow-right"></i>
+        </a>
+    </div>
+    <main>
+        <nav>
+            <div class="nav_l">
+                <div class="nav_left" id="navToggle">
+                    <i class="bi bi-caret-left"></i>
+                </div>
+                <h2 id="navTitle">Admin Students ( <span id="navName">Students</span> )</h2>
+            </div>
+            <div class="nav_right">
+                <div class="search" style="opacity: 0;">
+                    <input type="text" placeholder="Search..." id="search" oninput="searchStudents()">
+                    <i class="bi bi-search"></i>
+                </div>
+                <i class="bi bi-bell"></i>
+            </div>
+        </nav>
+        <div class="list">
+            <div class="list_top">
+              <h2 class="list_h2" style="padding: 12px 0;">Students name</h2>
+              
+            </div>
+            <div class="profileBox">
+                <div class="img" id="studentImg"><img src="../Images/profile.png" alt="student image" ></div>
+                <div class="info">
+                    <div><span>Name</span> <p id="studentName">Lalala</p></div>
+                    <div><span>Email</span> <p id="studentEmail">valla</p></div>
+                    <div><span>Phone</span> <p id="studentPhone">yalla</p></div>
+                    <div><span>Data admission</span> <p id="studentTime">habibi</p></div>
+                </div>
+                <img src="../Images/qandl.png" class="qandl" alt="">
+                <div class="goBack"><a href="./dashboard.html">Go Back</a></div>
+            </div>
+          </div>
+    </main>
+    <script>
+        const admin = JSON.parse(localStorage.getItem('AbdulazizJS121marta'));
+        const adminName = document.getElementById('adminName');
+        const navName = document.getElementById('navName');
+        const adminPhoto = document.querySelector('.left_img');
+        const search = document.getElementById('search');
+        if (admin[0].name.length > 15) {
+            adminName.innerHTML = `${admin[0].name.slice(0, 15)}...`;
+        } else {
+            adminName.innerHTML = admin[0].name;
+        }
+        navName.innerHTML = admin[0].name;
+        adminPhoto.innerHTML = `<img src="${admin[0].photo}" alt="Admin Photo">`;
+
+        const left = document.querySelector('.left'),
+            main = document.querySelector('main'),
+            navToggle = document.getElementById('navToggle')
+            ;
+        navToggle.addEventListener('click', () => {
+
+            if (left.style.left == '-270px') {
+                setTimeout(() => {
+                    left.style.left = '0px';
+                    main.style.width = 'calc(100% - 270px)';
+                    navToggle.style.transform = 'rotate(0deg)';
+                }, 100)
+                navTitle.style.transform = 'translate(0, -45px)';
+            } else {
+                left.style.left = '-270px';
+                main.style.width = '100%';
+                navToggle.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    navTitle.style.transform = 'translate(0, 0)';
+                }, 200)
+            }
+        });
+
+        const student = JSON.parse(localStorage.getItem('student'));
+
+        document.querySelector('.list_h2').innerHTML = student[0].name;
+        document.getElementById('studentName').innerHTML = student[0].name;
+        document.getElementById('studentEmail').innerHTML = student[0].email;
+        document.getElementById('studentPhone').innerHTML = student[0].phone;
+        document.getElementById('studentTime').innerHTML = student[0].time;
+        document.getElementById('studentImg').innerHTML = `<img src="${student[0].photo}" alt="Student Photo">`;
+    </script>
+</body>
+
+</html>
